@@ -1,0 +1,23 @@
+services:
+  wealth-trainer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:${PORT:-8080}:8080"
+    environment:
+      BOOTSTRAP_TOKEN: ${BOOTSTRAP_TOKEN:?Set BOOTSTRAP_TOKEN in .env}
+      BACKUP_DIR: /backups
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+    volumes:
+      - wealth-data:/data
+      - ./backups:/backups
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 10s
+volumes:
+  wealth-data:

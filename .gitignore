@@ -1,0 +1,29 @@
+# Local secrets and configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Family data and backups
+data/
+backups/
+*.db
+*.db-*
+*.db.*
+*.sqlite
+*.sqlite3
+*.sqlite-*
+
+# Local screenshots and scratch outputs
+*-preview.jpg
+preview.jpg
+*.log
+
+# Python and tools
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.vscode/
+.DS_Store
